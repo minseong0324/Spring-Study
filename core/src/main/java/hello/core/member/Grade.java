@@ -1,2 +1,6 @@
-package hello.core.member;public class Gradle {
+package hello.core.member;
+
+public enum Grade {
+    BASIC,
+    VIP
 }
