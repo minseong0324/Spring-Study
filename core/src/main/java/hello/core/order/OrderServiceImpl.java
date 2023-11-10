@@ -1,16 +1,18 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Member;
-import hello.core.member.MemberMemoryRepository;
 import hello.core.member.MemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemberMemoryRepository(); //MemberRepository에서 회원 찾아야 하니까 필요
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
-    //private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository; //MemberRepository에서 회원 찾아야 하니까 필요
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId);    //이렇게 해서 주문 생성 요청이 오면 회원 정보를 먼저 조회를 하고 그 다음에 할인정책에다가 회원을 넘기는 것이다.
