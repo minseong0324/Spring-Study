@@ -25,4 +25,8 @@ public class OrderServiceImpl implements OrderService{
         // 앞으로 할인에 대한 변경이 필요하면 할인 쪽만 고치면 된다.
     }
 
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }
